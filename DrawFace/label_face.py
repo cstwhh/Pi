@@ -39,7 +39,7 @@ camera.framerate = 60
 rawCapture = PiRGBArray( camera, size=( resX, resY ) )
 
 # The face cascade file to be used
-face_cascade = cv2.CascadeClassifier('frontalface.xml')
+face_cascade = cv2.CascadeClassifier('../data/frontalface.xml')
 
 t_start = time.time()
 fps = 0
