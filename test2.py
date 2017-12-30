@@ -11,17 +11,20 @@ import time
 
 
 ### Setup #####################################################################
+# set env varible
 
 os.putenv( 'SDL_FBDEV', '/dev/fb0' )
 
 resX = 320
 resY = 240
+#resX = 640
+#resY = 480
 
-cx = resX / 2
-cy = resY / 2
+#cx = resX / 2
+#cy = resY / 2
 
-os.system( "echo 0=150 > /dev/servoblaster" )
-os.system( "echo 1=150 > /dev/servoblaster" )
+# os.system( "echo 0=150 > /dev/servoblaster" )
+# os.system( "echo 1=150 > /dev/servoblaster" )
 
 xdeg = 150
 ydeg = 150
@@ -53,8 +56,8 @@ def get_faces( img ):
 
 def draw_frame( img, faces ):
 
-	global xdeg
-	global ydeg
+	# global xdeg
+	# global ydeg
 	global fps
 	global time_t
 	
@@ -64,22 +67,8 @@ def draw_frame( img, faces ):
 		cv2.rectangle( img, ( x, y ),( x + w, y + h ), ( 200, 255, 0 ), 2 )
 		cv2.putText(img, "Face No." + str( len( faces ) ), ( x, y ), cv2.FONT_HERSHEY_SIMPLEX, 0.5, ( 0, 0, 255 ), 2 )
 		
-		tx = x + w/2
-		ty = y + h/2
-		
-		if   ( cx - tx > 15 and xdeg <= 190 ):
-			xdeg += 1
-			os.system( "echo 0=" + str( xdeg ) + " > /dev/servoblaster" )
-		elif ( cx - tx < -15 and xdeg >= 110 ):
-			xdeg -= 1
-			os.system( "echo 0=" + str( xdeg ) + " > /dev/servoblaster" )
-		
-		if   ( cy - ty > 15 and ydeg >= 110 ):
-			ydeg -= 1
-			os.system( "echo 1=" + str( ydeg ) + " > /dev/servoblaster" )
-		elif ( cy - ty < -15 and ydeg <= 190 ):
-			ydeg += 1
-			os.system( "echo 1=" + str( ydeg ) + " > /dev/servoblaster" )
+		#tx = x + w/2
+		#ty = y + h/2
 
 	# Calculate and show the FPS
 	fps = fps + 1
